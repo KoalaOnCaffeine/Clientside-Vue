@@ -1,5 +1,6 @@
 <template>
-  <v-app-bar app color="primary" dark elevate-on-scroll hide-on-scroll elevation="5">
+  <v-app-bar app class="hidden-sm-only hidden-xs-only" color="primary" dark elevate-on-scroll elevation="5"
+             hide-on-scroll>
     <div class="d-flex align-center">
       <v-btn href="/" text>
         <v-icon>mdi-image</v-icon>
@@ -18,8 +19,9 @@
     </v-btn>
   </v-app-bar>
 </template>
+
 <script>
 export default {
-  name: 'TopBar'
+  name: 'TopBar',
 }
 </script>
