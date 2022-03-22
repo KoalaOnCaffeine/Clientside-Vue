@@ -12,7 +12,7 @@
           <h1>Short description of the project</h1>
         </v-col>
         <v-col>
-          <v-img :src="require(`${first_image_src}`)" contain height="500"/>
+          <v-img :src=first_image_src contain height="500"/>
         </v-col>
 
       </v-row>
@@ -20,7 +20,7 @@
       <v-row class="ma-xl-03 ma-lg-02 mt-xs-16 mb-5">
 
         <v-col>
-          <v-img :src="require(`${second_image_src}`)" contain height="500"/>
+          <v-img :src=second_image_src contain height="500"/>
         </v-col>
 
         <v-col class="mr-0 mr-lg-10 text-lg-left text-center align-self-center">
@@ -30,25 +30,23 @@
       </v-row>
 
     </v-container>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
   </v-app>
 </template>
 
 <script>
 
-import TopBar from "@/components/TopBar";
+import TopBar from "./TopBar.vue";
 
 export default {
-  name: 'App',
+  name: 'IndexPage',
 
   components: {
     TopBar
   },
 
   data: () => ({
-    first_image_src: "./assets/placeholder-image.png",
-    second_image_src: "./assets/placeholder-image.png",
+    first_image_src: "placeholder-image.png",
+    second_image_src: "placeholder-image.png",
   }),
 };
 </script>

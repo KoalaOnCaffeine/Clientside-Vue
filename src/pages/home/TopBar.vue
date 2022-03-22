@@ -10,11 +10,11 @@
 
     <v-spacer/>
 
-    <v-btn href="/sign-up" text>
+    <v-btn href="/signup" text>
       <span class="mr-2">Sign up</span>
     </v-btn>
 
-    <v-btn href="/log-in" text>
+    <v-btn href="/login" text>
       <span class="mr-2">Log in</span>
     </v-btn>
   </v-app-bar>
