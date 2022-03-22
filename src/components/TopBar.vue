@@ -1,9 +1,9 @@
 <template>
-  <v-app-bar app color="primary" dark elevate-on-scroll>
+  <v-app-bar app color="primary" dark elevate-on-scroll elevation="5">
     <div class="d-flex align-center">
       <v-btn href="/" text>
         <v-icon>mdi-image</v-icon>
-        <span class="shrink mt-1 hidden-xs-only ml-3">Name</span>
+        <span class="shrink mt-1 ml-3">Name</span>
       </v-btn>
     </div>
 
