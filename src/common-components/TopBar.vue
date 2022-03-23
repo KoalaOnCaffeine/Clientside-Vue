@@ -2,7 +2,7 @@
   <v-app-bar app class="hidden-sm-only hidden-xs-only" color="primary" dark elevate-on-scroll elevation="5"
              hide-on-scroll>
     <div class="d-flex align-center">
-      <v-btn href="/" text>
+      <v-btn href="/home" text>
         <v-icon>mdi-image</v-icon>
         <span class="shrink mt-1 ml-3">Name</span>
       </v-btn>
