@@ -35,7 +35,7 @@
 
 <script>
 
-import TopBar from "./TopBar.vue";
+import TopBar from "../../common-components/TopBar.vue";
 
 export default {
   name: 'IndexPage',

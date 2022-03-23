@@ -1,12 +1,16 @@
 <template>
-  <div>
-    Sign up page
-  </div>
+  <v-app>
+    <TopBar/>
+  </v-app>
 </template>
 
 <script>
+
+import TopBar from '../../common-components/TopBar.vue';
+
 export default {
-  name: "LogInPage"
+  name: 'LogInPage',
+  components: {TopBar}
 }
 </script>
 
