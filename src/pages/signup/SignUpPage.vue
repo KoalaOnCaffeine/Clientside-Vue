@@ -5,22 +5,27 @@
     <v-container>
       <v-col>
         <v-row>
+          <v-spacer/>
           <v-text-field :rules=usernameRules
                         label="Username"
                         outlined
                         prepend-icon="mdi-account">
           </v-text-field>
+          <v-spacer/>
         </v-row>
 
         <v-row>
+          <v-spacer/>
           <v-text-field :rules=emailRules
                         label="Email"
                         outlined
                         prepend-icon="mdi-email">
           </v-text-field>
+          <v-spacer/>
         </v-row>
 
         <v-row>
+          <v-spacer/>
           <v-text-field :append-icon="showPassword ? 'mdi-eye':'mdi-eye-off'" :rules=passwordRules
                         :type="showPassword ? 'text' : 'password'"
                         label="Password"
@@ -28,15 +33,23 @@
                         prepend-icon="mdi-key"
                         @click:append="showPassword ^= true">
           </v-text-field>
+          <v-spacer/>
         </v-row>
 
         <v-row>
+          <v-spacer/>
           <v-text-field
               :rules=dateOfBirthRules label="Date of birth"
               outlined
               prepend-icon="mdi-calendar"
               type="date">
           </v-text-field>
+          <v-spacer/>
+        </v-row>
+        <v-row>
+          <v-spacer/>
+          <v-btn>Sign up</v-btn>
+          <v-spacer/>
         </v-row>
       </v-col>
     </v-container>
