@@ -4,7 +4,7 @@ module.exports = defineConfig({
         'vuetify'
     ],
     pages: {
-        'home': {
+        home: {
             entry: 'src/pages/home/main.js',
             template: 'public/home.html',
             filename: 'home.html',
@@ -14,13 +14,13 @@ module.exports = defineConfig({
             entry: 'src/pages/login/main.js',
             template: 'public/home.html',
             filename: 'login.html',
-            title: 'Login Page'
+            title: 'Login'
         },
         signup: {
             entry: 'src/pages/signup/main.js',
             template: 'public/home.html',
             filename: 'signup.html',
-            title: 'Sign up Page'
+            title: 'Sign up'
         }
     }
 })
