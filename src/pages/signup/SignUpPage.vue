@@ -7,11 +7,11 @@
         <v-row>
           <v-spacer/>
           <v-text-field
-              v-model="username"
-              :append-outer-icon="validUsername(username) ? 'mdi-check' : 'mdi-close'"
               :rules=usernameRules
               label="Username"
+              v-model="username"
               outlined
+              :append-outer-icon="validUsername(username) ? 'mdi-check' : 'mdi-close'"
               prepend-icon="mdi-account">
           </v-text-field>
           <v-spacer/>
@@ -20,12 +20,12 @@
         <v-row>
           <v-spacer/>
           <v-text-field
-              v-model="email"
-              :append-outer-icon="validEmail(email) ? 'mdi-check' : 'mdi-close'"
-              :rules=emailRules
               label="Email"
+              v-model="email"
               outlined
               prepend-icon="mdi-email"
+              :append-outer-icon="validEmail(email) ? 'mdi-check' : 'mdi-close'"
+              :rules=emailRules
           >
           </v-text-field>
           <v-spacer/>
@@ -34,14 +34,14 @@
         <v-row>
           <v-spacer/>
           <v-text-field
-              v-model="password"
-              :append-icon="showPassword ? 'mdi-eye':'mdi-eye-off'"
-              :append-outer-icon="validPassword(password) ? 'mdi-check' : 'mdi-close'"
-              :rules=passwordRules
               :type="showPassword ? 'text' : 'password'"
+              v-model="password"
               label="Password"
               outlined
               prepend-icon="mdi-key"
+              :append-icon="showPassword ? 'mdi-eye':'mdi-eye-off'"
+              :append-outer-icon="validPassword(password) ? 'mdi-check' : 'mdi-close'"
+              :rules=passwordRules
               @click:append="showPassword ^= true">
           </v-text-field>
           <v-spacer/>
@@ -51,9 +51,9 @@
           <v-spacer/>
           <v-text-field
               v-model="dateOfBirth"
-              :append-outer-icon="validDateOfBirth(dateOfBirth) ? 'mdi-check' : 'mdi-close'"
               outlined
               prepend-icon="mdi-calendar"
+              :append-outer-icon="validDateOfBirth(dateOfBirth) ? 'mdi-check' : 'mdi-close'"
               :rules=dateOfBirthRules label="Date of birth"
               type="date">
           </v-text-field>
@@ -169,5 +169,9 @@ export default {
 </script>
 
 <style scoped>
+
+.v-text-field {
+  width: 8.75%;
+}
 
 </style>
