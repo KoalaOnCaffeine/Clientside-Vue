@@ -5,23 +5,37 @@
     <v-container>
       <v-col>
         <v-row>
-          <!-- Add in the prepend icon for the username field -->
-          <v-text-field :rules=usernameRules label="Username" prepend-icon="account">
+          <v-text-field :rules=usernameRules
+                        label="Username"
+                        outlined
+                        prepend-icon="mdi-account">
           </v-text-field>
         </v-row>
 
         <v-row>
-          <v-text-field :rules=usernameRules label="Email" prepend-icon="mdi-email">
+          <v-text-field :rules=emailRules
+                        label="Email"
+                        outlined
+                        prepend-icon="mdi-email">
           </v-text-field>
         </v-row>
 
         <v-row>
-          <v-text-field :rules=usernameRules label="Password" prepend-icon="mdi-key">
+          <v-text-field :append-icon="showPassword ? 'mdi-eye':'mdi-eye-off'" :rules=passwordRules
+                        :type="showPassword ? 'text' : 'password'"
+                        label="Password"
+                        outlined
+                        prepend-icon="mdi-key"
+                        @click:append="showPassword ^= true">
           </v-text-field>
         </v-row>
 
         <v-row>
-          <v-text-field :rules=usernameRules label="Date of birth" prepend-inner="calendar">
+          <v-text-field
+              :rules=dateOfBirthRules label="Date of birth"
+              outlined
+              prepend-icon="mdi-calendar"
+              type="date">
           </v-text-field>
         </v-row>
       </v-col>
@@ -40,13 +54,21 @@ export default {
   name: 'SignUpPage',
   components: {TopBar},
   data: () => ({
+    showPassword: false,
     usernameRules: [
       value => !!value || 'Username is required', // Value must be present
       // Check for a valid email
     ],
-    emailRules: [],
-    passwordRules: [],
-    dateOfBirthRules: []
+    emailRules: [
+      // Validate email
+      value => !!value || 'Email is required'
+    ],
+    passwordRules: [
+      // Validate password
+    ],
+    dateOfBirthRules: [
+      // Validate date of bith
+    ]
   })
 }
 </script>
