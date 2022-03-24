@@ -65,9 +65,11 @@ export default {
     ],
     passwordRules: [
       // Validate password
+      value => !!value || 'Password is required'
     ],
     dateOfBirthRules: [
-      // Validate date of bith
+      value => !!value || 'Date of birth is required'
+      // Validate date of birth
     ]
   })
 }
