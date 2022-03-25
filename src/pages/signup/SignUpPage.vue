@@ -2,6 +2,8 @@
   <v-app>
     <TopBar/>
     <v-spacer/>
+    <h1 class="align-self-center">Sign up</h1>
+    <v-spacer/>
     <v-container>
       <v-col>
         <v-row>
@@ -211,6 +213,10 @@ export default {
 
 .v-text-field {
   width: 8.75%;
+}
+
+h1 {
+  font-size: xxx-large;
 }
 
 </style>
