@@ -83,7 +83,7 @@ function isValidUsername(username) {
 }
 
 function usernameIsValidLength(username) {
-  return username.length <= 20;
+  return 0 < username.length && username.length <= 20;
 }
 
 function usernameOnlyValidChars(username) {
