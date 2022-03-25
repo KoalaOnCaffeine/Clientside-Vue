@@ -1,4 +1,4 @@
-const { defineConfig } = require('@vue/cli-service')
+const {defineConfig} = require('@vue/cli-service')
 module.exports = defineConfig({
     transpileDependencies: [
         'vuetify'
@@ -6,19 +6,19 @@ module.exports = defineConfig({
     pages: {
         home: {
             entry: 'src/pages/home/main.js',
-            template: 'public/home.html',
-            filename: 'home.html',
+            template: 'public/template.html',
+            filename: 'index.html',
             title: 'Home',
         },
         login: {
             entry: 'src/pages/login/main.js',
-            template: 'public/home.html',
+            template: 'public/template.html',
             filename: 'login.html',
             title: 'Login'
         },
         signup: {
             entry: 'src/pages/signup/main.js',
-            template: 'public/home.html',
+            template: 'public/template.html',
             filename: 'signup.html',
             title: 'Sign up'
         }
