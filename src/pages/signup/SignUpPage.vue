@@ -143,8 +143,51 @@ function emailContainsValidDomain(email) {
 
 // PASSWORD
 
+// Password must contain a lowercase, capital, punctuation, number, and be at least 7 characters long
 function isValidPassword(password) {
-  return !!password;
+  return containsLowerCase(password)
+      && containsCapital(password)
+      && containsPunctuation(password)
+      && containsDigit(password)
+      && passwordIsValidLength(password);
+}
+
+// Password must contain a lowercase letter, which is any letter whose lowercase is itself
+function containsLowerCase(password) {
+  for (let character of password) {
+    if (character.toLowerCase() === character) return true;
+  }
+  return false;
+}
+
+// Password must contain a capital letter, which is any letter whose uppercase is itself
+function containsCapital(password) {
+  for (let character of password) {
+    if (character.toUpperCase() === character) return true;
+  }
+  return false;
+}
+
+// Password must contain punctuation, which is anything satisfying !isLetter and !isDigit
+function containsPunctuation(password) {
+  for (let index = 0; index < password.length; index++) {
+    let charCode = password.charCodeAt(index);
+    if (!isLetter(charCode) && !isDigit(charCode)) return true; // Not a letter or a digit, so it is 'punctuation'
+  }
+}
+
+// Password must contain a digit, which is anything satisfying the isDigit function
+function containsDigit(password) {
+  for (let index = 0; index < password.length; index++) {
+    let charCode = password.charCodeAt(index);
+    if (isDigit(charCode)) return true;
+  }
+  return false;
+}
+
+// Password must be at least 7 characters long
+function passwordIsValidLength(password) {
+  return password.length >= 7;
 }
 
 // DATE OF BIRTH
@@ -161,9 +204,20 @@ _ = 95
  */
 
 function isValidUsernameCharacter(charCode) {
+  if (isLetter(charCode)) return true;
+  return charCode === 95;
+}
+
+// Checks whether the character code is in between the character codes for a and z, or A and Z (all inclusive)
+function isLetter(charCode) {
   if (97 <= charCode && charCode <= 122) return true;
   if (65 <= charCode && charCode <= 90) return true;
-  return charCode === 95;
+  return false;
+}
+
+// Checks whether the character code is between the character codes for 0 and 9 (both inclusive)
+function isDigit(charCode) {
+  return '0'.charCodeAt(0) <= charCode && charCode <= '9'.charCodeAt(0)
 }
 
 export default {
@@ -196,11 +250,16 @@ export default {
       // Validate email
       value => !!value || 'Email is required',
       value => emailContainsValidUsername(value) || 'Email must contains a valid username',
-      value => emailContainsValidDomain(value) || 'Email must contain a valid domain'
+      value => emailContainsValidDomain(value) || 'Email must contain a valid domain',
     ],
     passwordRules: [
       // Validate password
-      value => !!value || 'Password is required'
+      value => !!value || 'Password is required',
+      value => containsLowerCase(value) || 'Password must contain a lowercase letter',
+      value => containsCapital(value) || 'Password must contain a capital letter',
+      value => containsPunctuation(value) || 'Password must contain punctuation',
+      value => containsDigit(value) || 'Password must contain a digit',
+      value => passwordIsValidLength(value) || 'Password must be at least 7 characters'
     ],
     dateOfBirthRules: [
       value => !!value || 'Date of birth is required'
