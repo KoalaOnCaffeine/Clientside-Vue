@@ -13,6 +13,7 @@
               label="Username"
               v-model="username"
               outlined
+              autofocus
               :append-outer-icon="validUsername(username) ? 'mdi-check' : 'mdi-close'"
               prepend-icon="mdi-account">
           </v-text-field>
