@@ -96,8 +96,46 @@ function usernameOnlyValidChars(username) {
 
 // EMAIL
 
+// https://www.w3resource.com/javascript/form/email-validation.php
+
 function isValidEmail(email) {
-  return !!email;
+  return emailContainsValidUsername(email) && emailContainsValidDomain(email);
+}
+
+function emailContainsValidUsername(email) {
+  if (email.length === 0) return false; // Must have a character there
+  let domainStart = email.indexOf('@');
+  // Get the string from the start to the @, exclusive. If there is no @, go to the end of the string
+  let username = email.substr(0, domainStart === -1 ? email.length : domainStart);
+
+  /*
+  Matches:
+  - The start of a string
+  - A large group of characters, followed by a dot, all of this any amount of times (to make sure a dot isn't the first character)
+  - The same large group of characters at least once (to ensure the dot wasn't the last character)
+  - The end of a string
+  */
+  return /^([-!#$%&'*/=?^`{|}_"+A-Za-z0-9]+\.)*[-!#$%&'*/=?^`{|}_"+A-Za-z0-9]+$/.test(username);
+}
+
+function emailContainsValidDomain(email) {
+  // this method needs something of the form @x.y to just validate the domain, regardless of any other part
+  if (email.length < 4) return false;
+  let domainStart = email.indexOf('@');
+  if (domainStart === -1) return false; // No @ was found
+  let domain = email.substr(domainStart + 1); // Get a new string, starting after the @ (safe since we have >=4 chars)
+
+  /*
+  Matches:
+  - The start of a string
+  - Alphanumeric characters, then optionally a hyphen or dot, all of this any amount of times
+  - An alphanumeric character (so it doesn't end with a hyphen or dot, and must be at least 1 character long)
+  - A dot
+  - 2 or alphanumeric characters
+  - The end of a string
+   */
+
+  return /^([A-Za-z0-9]+[-.]?)*[A-Za-z0-9]\.[A-Za-z0-9]{2,}$/.test(domain);
 }
 
 // PASSWORD
@@ -122,8 +160,7 @@ _ = 95
 function isValidUsernameCharacter(charCode) {
   if (97 <= charCode && charCode <= 122) return true;
   if (65 <= charCode && charCode <= 90) return true;
-  if (charCode === 95) return true;
-  return false;
+  return charCode === 95;
 }
 
 export default {
@@ -154,7 +191,9 @@ export default {
     ],
     emailRules: [
       // Validate email
-      value => !!value || 'Email is required'
+      value => !!value || 'Email is required',
+      value => emailContainsValidUsername(value) || 'Email must contains a valid username',
+      value => emailContainsValidDomain(value) || 'Email must contain a valid domain'
     ],
     passwordRules: [
       // Validate password
