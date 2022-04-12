@@ -38,7 +38,7 @@
 import TopBar from "../../common-components/TopBar.vue";
 
 export default {
-  name: 'IndexPage',
+  name: 'HomePage',
 
   components: {
     TopBar
