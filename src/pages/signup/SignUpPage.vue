@@ -283,7 +283,7 @@ export default {
 <style scoped>
 
 .v-text-field {
-  width: 8.75%;
+  width: 15%;
 }
 
 h1 {
