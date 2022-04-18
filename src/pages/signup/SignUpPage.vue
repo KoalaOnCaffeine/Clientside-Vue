@@ -225,7 +225,18 @@ export default {
   components: {TopBar},
   methods: {
     submitSignup: (username, email, password, dateOfBirth) => {
-      alert(`${username} ${email} ${password} ${dateOfBirth}`)
+      fetch("/api/accounts/create", {
+        method: 'POST',
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          dateOfBirth: dateOfBirth
+        })
+      }).then(res => res.text()).then(text => {
+        const token = JSON.parse(text)["data"]["token"]
+        localStorage.setItem("AuthToken", token)
+      })
     },
     validUsername: isValidUsername,
     validEmail: isValidEmail,
@@ -249,7 +260,7 @@ export default {
     emailRules: [
       // Validate email
       value => !!value || 'Email is required',
-      value => emailContainsValidUsername(value) || 'Email must contains a valid username',
+      value => emailContainsValidUsername(value) || 'Email must contain a valid username',
       value => emailContainsValidDomain(value) || 'Email must contain a valid domain',
     ],
     passwordRules: [
