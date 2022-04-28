@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app class="hidden-sm-only hidden-xs-only" color="primary" dark elevate-on-scroll elevation="5"
+  <v-app-bar app color="primary" dark elevate-on-scroll elevation="5"
              hide-on-scroll>
     <div class="d-flex align-center">
       <v-btn href="/home" text>
