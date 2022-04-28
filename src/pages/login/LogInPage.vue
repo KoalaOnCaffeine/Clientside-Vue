@@ -53,7 +53,17 @@
 import TopBar from '../../common-components/TopBar.vue'
 
 function submitLogin(username, password) {
-  alert(username, password) // TODO
+  fetch("/api/accounts/login", {
+    method: 'POST',
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    })
+  }).then(res => res.json()).then(json => {
+    const token = json['data']['token']
+    localStorage.setItem('AuthToken', token)
+    alert(`Login token: ${token}`)
+  })
 }
 
 export default {
