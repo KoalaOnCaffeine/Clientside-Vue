@@ -225,7 +225,7 @@ export default {
   components: {TopBar},
   methods: {
     submitSignup: (username, email, password, dateOfBirth) => {
-      fetch("/api/accounts/create", {
+      fetch('/api/accounts/create', {
         method: 'POST',
         body: JSON.stringify({
           username: username,
@@ -234,8 +234,10 @@ export default {
           dateOfBirth: dateOfBirth
         })
       }).then(res => res.text()).then(text => {
-        const token = JSON.parse(text)["data"]["token"]
-        localStorage.setItem("AuthToken", token)
+        const obj = JSON.parse(text)
+        const data = obj['data']
+        const token = data['token']
+        localStorage.setItem('AuthToken', token)
       })
     },
     validUsername: isValidUsername,
