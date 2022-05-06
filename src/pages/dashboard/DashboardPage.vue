@@ -1,10 +1,10 @@
 <template>
   <div>
-    <template v-if="loadingUsername">
+    <template v-if="loadingTeams">
       <p>Loading...</p>
     </template>
     <template v-else>
-      Hello, {{ username }} - sent the auth token which is wrong
+      {{ teamResponse }}
     </template>
   </div>
 </template>
@@ -12,22 +12,26 @@
 <script>
 export default {
   name: 'DashboardPage',
-  data: async () => ({
-    username: '',
-    loadingUsername: true
+  data: () => ({
+    teamResponse: '',
+    loadingTeams: true
   }),
   methods: {
-    getUsername: () => {
-      fetch(`/api/accounts/${localStorage.getItem('AuthToken')}`).then(res => {
-        res.json()
-      }).then(json => {
-        this.username = json.username
-        this.loadingUsername = false
+    getTeams: function () {
+
+      fetch('/api/teams/', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("AuthToken")}`
+        }
+      }).then(res => res.json()).then(json => {
+        this.loadingTeams = false
+        this.teamResponse = JSON.stringify(json)
+        console.log(json)
       })
     }
   },
-  created() {
-    this.getUsername()
+  mounted() {
+    this.getTeams()
   }
 }
 </script>
