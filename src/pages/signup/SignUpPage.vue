@@ -238,7 +238,7 @@ export default {
         const data = obj['data']
         const token = data['token']
         localStorage.setItem('AuthToken', token)
-        document.location.href = "/dashboard"
+        document.location.href = "/dashboard/"
       })
     },
     validUsername: isValidUsername,

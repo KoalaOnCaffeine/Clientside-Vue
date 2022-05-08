@@ -63,7 +63,7 @@ function submitLogin(username, password) {
     const token = json['data']['token']
     localStorage.setItem('AuthToken', token)
     alert(`Login token: ${token}`)
-    document.location.href = "/dashboard"
+    document.location.href = "/dashboard/"
   })
 }
 
