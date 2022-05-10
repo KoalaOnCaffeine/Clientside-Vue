@@ -59,11 +59,12 @@ function submitLogin(username, password) {
       username: username,
       password: password,
     })
-  }).then(res => res.json()).then(json => {
-    const token = json['data']['token']
+  }).then(res => res.text()).then(text => {
+    const obj = JSON.parse(text)
+    const data = obj['data']
+    const token = data['token']
     localStorage.setItem('AuthToken', token)
-    alert(`Login token: ${token}`)
-    document.location.href = "/dashboard/"
+    document.location.href = '/dashboard/'
   })
 }
 
