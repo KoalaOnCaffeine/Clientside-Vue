@@ -245,16 +245,16 @@ export default {
           dateOfBirth: dateOfBirth
         })
       }).then(res => {
-        if (res.statusCode !== 200) {
+        if (res.status !== 200) {
           // Error
-          alert(JSON.stringify(res.json()))
           return
         }
-        const json = res.json()
-        const data = json['data']
-        const token = data['token']
-        localStorage.setItem('AuthToken', token)
-        document.location.href = "/dashboard/"
+        res.text().then(text => JSON.parse(text)).then(json => {
+          const data = json['data']
+          const token = data['token']
+          localStorage.setItem('AuthToken', token)
+          document.location.href = "/dashboard/"
+        })
       })
     },
     validUsername: isValidUsername,
