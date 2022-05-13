@@ -67,6 +67,11 @@
           <v-btn @click="submitSignup(username, email, password, dateOfBirth)">Sign up</v-btn>
           <v-spacer/>
         </v-row>
+        <v-row class="mt-6">
+          <v-spacer/>
+          <p :hidden="!error" class="red--text">Invalid details</p>
+          <v-spacer/>
+        </v-row>
       </v-col>
     </v-container>
     <v-spacer/>
@@ -155,7 +160,7 @@ function isValidPassword(password) {
 // Password must contain a lowercase letter, which is any letter whose lowercase is itself
 function containsLowerCase(password) {
   for (let character of password) {
-    if (character.toLowerCase() === character) return true;
+    if (isLetter(character.charCodeAt(0)) && character.toLowerCase() === character) return true;
   }
   return false;
 }
@@ -163,7 +168,7 @@ function containsLowerCase(password) {
 // Password must contain a capital letter, which is any letter whose uppercase is itself
 function containsCapital(password) {
   for (let character of password) {
-    if (character.toUpperCase() === character) return true;
+    if (isLetter(character.charCodeAt(0)) && character.toUpperCase() === character) return true;
   }
   return false;
 }
@@ -224,7 +229,13 @@ export default {
   name: 'SignUpPage',
   components: {TopBar},
   methods: {
-    submitSignup: (username, email, password, dateOfBirth) => {
+    submitSignup: function (username, email, password, dateOfBirth) {
+
+      if (!isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password) || !isValidDateOfBirth(dateOfBirth)) {
+        this.error = true
+        return
+      }
+
       fetch('/api/accounts/create', {
         method: 'POST',
         body: JSON.stringify({
@@ -233,9 +244,14 @@ export default {
           password: password,
           dateOfBirth: dateOfBirth
         })
-      }).then(res => res.text()).then(text => {
-        const obj = JSON.parse(text)
-        const data = obj['data']
+      }).then(res => {
+        if (res.statusCode !== 200) {
+          // Error
+          alert(JSON.stringify(res.json()))
+          return
+        }
+        const json = res.json()
+        const data = json['data']
         const token = data['token']
         localStorage.setItem('AuthToken', token)
         document.location.href = "/dashboard/"
@@ -252,6 +268,7 @@ export default {
     email: '',
     password: '',
     dateOfBirth: '',
+    error: false,
 
     showPassword: false,
     usernameRules: [
