@@ -246,7 +246,7 @@ export default {
         })
       }).then(res => {
         if (res.status !== 200) {
-          // Error
+          this.error = true
           return
         }
         res.text().then(text => JSON.parse(text)).then(json => {
