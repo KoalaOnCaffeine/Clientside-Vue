@@ -197,8 +197,22 @@ function passwordIsValidLength(password) {
 
 // DATE OF BIRTH
 
+// Date of birth must put the user's age between 13 and 150 both inclusive
 function isValidDateOfBirth(dateOfBirth) {
-  return !!dateOfBirth;
+  const date = Date.parse(dateOfBirth)
+  return dateIsOldEnough(date) && dateIsYoungEnough(date);
+}
+
+// Whether the year of the date at the current time minus the birthdate is, relative to 1970, larger than or equal to 13
+function dateIsOldEnough(date) {
+  const offsetDate = new Date(new Date().getTime() - date);
+  return offsetDate.getFullYear() - 1970 >= 13
+}
+
+// Whether the year of the date at the current time, minus the birthdate is, relative to 1970, less than or equal to 150
+function dateIsYoungEnough(date) {
+  const offsetDate = new Date(new Date().getTime() - date);
+  return offsetDate.getFullYear() - 1970 <= 150;
 }
 
 /*
@@ -293,7 +307,9 @@ export default {
       value => passwordIsValidLength(value) || 'Password must be at least 7 characters'
     ],
     dateOfBirthRules: [
-      value => !!value || 'Date of birth is required'
+      value => !!value || 'Date of birth is required',
+      value => dateIsOldEnough(Date.parse(value)) || 'You must be at least 13 years old',
+      value => dateIsYoungEnough(Date.parse(value)) || 'You must be younger than 150 years old'
       // Validate date of birth
     ]
   })
