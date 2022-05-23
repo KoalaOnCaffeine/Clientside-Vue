@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
     <template v-if="loadingTeams">
       <p>Loading...</p>
     </template>
@@ -7,17 +7,15 @@
       {{ teamResponse }}
     </template>
 
-    <template v-for="team in testTeams">
-      <TeamCard :id='team.id'
-                :key='team.id'
-                :description='team.description'
-                :image='team.image'
-                :members='team.members'
-                :name='team.name '
-                :projects='team.projects'/>
-      <v-spacer :key="team.id"/>
-    </template>
-  </div>
+    <TeamCard v-for="team in testTeams" :id='team.id'
+              :key='team.id'
+              :description='team.description'
+              :image='team.image'
+              :members='team.members'
+              :name='team.name '
+              :projects='team.projects'
+              class="rounded-card"/>
+  </v-app>
 </template>
 
 <script>
@@ -68,5 +66,7 @@ export default {
 </script>
 
 <style scoped>
-
+.rounded-card {
+  border-radius: 40px;
+}
 </style>
