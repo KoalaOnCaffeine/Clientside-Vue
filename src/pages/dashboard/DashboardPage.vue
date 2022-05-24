@@ -7,23 +7,23 @@
       {{ teamResponse }}
     </template>
 
-    <TeamCard v-for="team in testTeams" :id='team.id'
-              :key='team.id'
-              :description='team.description'
-              :image='team.image'
-              :members='team.members'
-              :name='team.name '
-              :projects='team.projects'
-              class="rounded-card"/>
+    <ProjectCard v-for="team in testTeams" :id='team.id'
+                 :key='team.id'
+                 :description='team.description'
+                 :image='team.image'
+                 :members='team.members'
+                 :name='team.name '
+                 :projects='team.projects'
+                 class="rounded-card"/>
   </v-app>
 </template>
 
 <script>
-import TeamCard from "@/pages/dashboard/TeamCard";
+import ProjectCard from "@/pages/dashboard/ProjectCard";
 
 export default {
   name: 'DashboardPage',
-  components: {TeamCard},
+  components: {ProjectCard},
   data: () => ({
     teamResponse: '',
     loadingTeams: true,
