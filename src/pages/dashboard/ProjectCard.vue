@@ -1,15 +1,15 @@
 <template>
-  <v-card class="ma-4" height="500" max-height="500" max-width="75%" outlined width="500">
+  <v-card class="ma-4" height="400" max-height="75%" max-width="75%" outlined width="400">
     <v-card-title style="position:absolute;">{{ name }}</v-card-title>
     <v-img :src="image" class="rounded-image" height="100" style="opacity: 45%"></v-img>
     <v-container>
       <v-row>
-        <v-col cols="9">
+        <v-col cols="8">
           <v-card-text>
             {{ description }}
           </v-card-text>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-container>
             <v-row>
               <v-col v-for="i in Math.min(3, loadedMembers.length)" :key="i" cols="3">
@@ -43,7 +43,7 @@
             </v-tooltip>
           </div>
         </v-col>
-        <v-divider class="ml-2 mr-2" vertical/>
+        <v-divider class="ml-2 mr-2" inset style="height: 75%" vertical/>
         <v-col class="text-left">
           Upcoming deadlines
           <div v-for="i in 3" :key="i">
