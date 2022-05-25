@@ -1,32 +1,6 @@
 <template>
   <v-card class="ma-4" height="400" max-height="75%" max-width="75%" outlined width="400">
-    <v-card-title style="position:absolute;">{{ name }}</v-card-title>
-    <v-img :src="image" class="rounded-image" height="100" style="opacity: 45%"></v-img>
-    <v-container>
-      <v-row>
-        <v-col cols="8">
-          <v-card-text>
-            {{ description }}
-          </v-card-text>
-        </v-col>
-        <v-col cols="4">
-          <v-container>
-            <v-row>
-              <v-col v-for="i in Math.min(3, loadedMembers.length)" :key="i" cols="3">
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-icon v-bind="attrs" @click="redirectToProfile(loadedMembers[i-1].id)" v-on="on">mdi-account
-                    </v-icon>
-                  </template>
-                  <!-- v-for i in 3 uses values 1, 2 and 3, so subtract one to get the right value -->
-                  <span>{{ loadedMembers[i - 1].name }}</span>
-                </v-tooltip>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-col>
-      </v-row>
-    </v-container>
+    <CardHeader :description="description" :image="image" :loaded-members="loadedMembers" :name="name"/>
     <v-container style="text-align: center; height: 65%">
       <v-row class="fill-height text-left">
         <v-col class="text-left">
@@ -64,9 +38,12 @@
 </template>
 
 <script>
+import CardHeader from "@/pages/dashboard/CardHeader";
+
 export default {
   name: "ProjectCard",
-  props: ['name', 'image', 'description', 'members', 'cards', 'id'],
+  components: {CardHeader},
+  props: ['id', 'name', 'description', 'image', 'members', 'cards'],
   data: () => ({
     loadedMembers: [
       {'id': '0123456789', 'name': 'elizabeth olsen'},
@@ -106,8 +83,5 @@ export default {
 </script>
 
 <style scoped>
-.rounded-image {
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-}
+
 </style>
