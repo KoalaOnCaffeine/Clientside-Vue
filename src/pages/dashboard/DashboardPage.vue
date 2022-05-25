@@ -7,6 +7,14 @@
       {{ teamResponse }}
     </template>
 
+    <ProjectCard v-for="team in teamResponse" :key="team.id"
+                 :description='team.description'
+                 :image='team.image'
+                 :members='team.members'
+                 :name='team.name '
+                 :projects='team.projects'
+                 class="rounded-card"/>
+
     <ProjectCard v-for="team in testTeams" :id='team.id'
                  :key='team.id'
                  :description='team.description'
@@ -54,8 +62,7 @@ export default {
         }
       }).then(res => res.json()).then(json => {
         this.loadingTeams = false
-        this.teamResponse = JSON.stringify(json)
-        console.log(json)
+        this.teamResponse = json
       })
     }
   },
