@@ -17,7 +17,7 @@
             </v-tooltip>
           </v-col>
         </v-col>
-        <v-divider class="ml-2 mr-2" inset style="height: 75%" vertical/>
+        <v-divider class="ml-2 mr-2 mt-5" inset style="height: 75%" vertical/>
         <v-col class="text-left">
           Upcoming deadlines
           <v-col v-for="i in 3" :key="i" :class="'pl-2 pr-2 pt-3 pb-3' + (i===1 ? ' mt-5' : '')">
