@@ -61,9 +61,6 @@ export default {
     ]
   }),
   methods: {
-    redirectToProfile: function (id) {
-      document.location.href = `/profile/${id}/`
-    },
     getTeam: function () {
       // Load the right cards and members
       // Load 3 user accounts from the team
