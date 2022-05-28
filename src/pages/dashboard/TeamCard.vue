@@ -2,12 +2,34 @@
   <v-card class="ma-4" height="400" max-height="75%" max-width="75%" outlined width="400">
     <CardHeader :description="description" :image="image" :loaded-members="loadedMembers" :name="name"/>
     <!-- Project list -->
-    <v-container style="text-align: center; height: 65%">
-      <!-- 3 rows -->
-      <v-row v-for="i in 3" :key="i" class="text-left">
-        <!-- Each with 2 columns -->
-        <v-col v-for="j in 2" :key=j cols="6">
-          {{ 2 * (i - 1) + (j - 1) }}
+    <v-container class="text-left" style="height: 65%">
+      Projects
+      <v-row>
+        <v-col clas="text-left">
+          <v-col v-for="i in 3" :key="i" :class="'pl-2 pr-2 pt-3 pb-3' + (i === 1 ? ' mt-5' : '')">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <div>
+                  <v-icon v-bind="attrs" v-on="on">mdi-clipboard-text</v-icon>
+                  Project {{ i }}
+                </div>
+              </template>
+              <span>Project {{ i }}</span>
+            </v-tooltip>
+          </v-col>
+        </v-col>
+        <v-col clas="text-left">
+          <v-col v-for="i in 3" :key="i" :class="'pl-2 pr-2 pt-3 pb-3' + (i === 1 ? ' mt-5' : '')">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <div>
+                  <v-icon v-bind="attrs" v-on="on">mdi-clipboard-text</v-icon>
+                  Project {{ i }}
+                </div>
+              </template>
+              <span>{{ i }}</span>
+            </v-tooltip>
+          </v-col>
         </v-col>
       </v-row>
     </v-container>
