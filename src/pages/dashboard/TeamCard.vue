@@ -49,11 +49,28 @@ export default {
       {'id': '0123456777', 'name': 'chris hemsworth'},
       {'id': '0123456777', 'name': 'rafe cameron'}],
     loadedProjects: [
-      {name: 'asd', description: 'dkjlljsjkl'}
+      {name: 'Test Project', description: 'Test description'}
     ]
   }),
+  methods: {
+    loadMembers: function () {
+      // Load 3 user accounts from the team
+      for (let i in Math.min(3, this.members.length)) {
+        fetch(`/api/accounts/${this.members[i]}`).then(res => {
+          // If the request was a success, set the loaded member to the member json response
+          if (res.status !== 200) {
+            this.loadedMembers[i] = res.json()
+          }
+        })
+      }
+    },
+    loadProjects: function () {
+      // Todo implement
+    }
+  },
   mounted() {
-    this.getTeam()
+    this.loadMembers()
+    this.loadProjects()
   }
 }
 </script>
