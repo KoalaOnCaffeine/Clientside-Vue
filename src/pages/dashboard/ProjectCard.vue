@@ -59,23 +59,7 @@ export default {
       {'name': 'Upcoming 2', 'description': 'Card 2 description shows when you hover'},
       {'name': 'Upcoming 3', 'description': 'Card 3 description shows when you hover'}
     ]
-  }),
-  methods: {
-    getTeam: function () {
-      // Load the right cards and members
-      // Load 3 user accounts from the team
-      for (let i in 3) {
-        fetch(`/api/accounts/${this.members[i]}`).then(res => {
-          if (res.status !== 200) {
-            this.loadedMembers[i] = res.json()
-          }
-        })
-      }
-    }
-  },
-  mounted() {
-    this.getTeam()
-  }
+  })
 }
 </script>
 
