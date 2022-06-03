@@ -5,11 +5,11 @@
     </template>
     <template v-else>
       <TeamCard v-for="team in teams" :id="team.id" :key="team.id"
-                :description="team.description"
-                :image="team.image"
-                :members="team.memberIDs"
-                :name="team.name"
-                :projects="team.projectIDs"
+                :description="team['description']"
+                :image="team['imageURL']"
+                :members="team['memberIDs']"
+                :name="team['name']"
+                :projects="team['projectIDs']"
                 class="rounded-card"
       />
     </template>
@@ -40,7 +40,6 @@ export default {
           // Read the text, parse it and access the teams
           res.text().then(text => {
             this.teams = JSON.parse(text).data.teams
-            console.log(this.teams)
             this.loadingTeams = false
           })
         }
