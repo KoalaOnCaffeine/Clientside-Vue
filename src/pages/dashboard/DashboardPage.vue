@@ -13,7 +13,6 @@
                 class="rounded-card"
       />
     </template>
-
   </v-app>
 </template>
 
@@ -33,9 +32,18 @@ export default {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("AuthToken")}`
         }
-      }).then(res => res.json()).then(json => {
-        this.teams = json
-        this.loadingTeams = false
+      }).then(res => {
+        if (parseInt(res.status / 100) === 4) {
+          // Fail code, either an invalid/no token
+          document.location.href = '/login/'
+        } else {
+          // Read the text, parse it and access the teams
+          res.text().then(text => {
+            this.teams = JSON.parse(text).data.teams
+            console.log(this.teams)
+            this.loadingTeams = false
+          })
+        }
       })
     }
   },
