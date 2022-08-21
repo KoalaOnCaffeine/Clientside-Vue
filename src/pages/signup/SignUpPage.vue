@@ -69,7 +69,7 @@
         </v-row>
         <v-row class="mt-6">
           <v-spacer/>
-          <p :hidden="!error" class="red--text">Invalid details</p>
+          <p :hidden="!error" class="red--text">{{ error }}</p>
           <v-spacer/>
         </v-row>
       </v-col>
@@ -246,7 +246,7 @@ export default {
     submitSignup: function (username, email, password, dateOfBirth) {
 
       if (!isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password) || !isValidDateOfBirth(dateOfBirth)) {
-        this.error = true
+        this.error = 'Invalid details!'
         return
       }
 
@@ -260,7 +260,7 @@ export default {
         })
       }).then(res => {
         if (res.status !== 200) {
-          this.error = true
+          this.error = res.status === 409 ? 'An account with that username or email already exists!' : 'Invalid details!'
           return
         }
         res.text().then(text => JSON.parse(text)).then(json => {
@@ -282,7 +282,7 @@ export default {
     email: '',
     password: '',
     dateOfBirth: '',
-    error: false,
+    error: '',
 
     showPassword: false,
     usernameRules: [
