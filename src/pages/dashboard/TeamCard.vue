@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-4" height="400" max-height="75%" max-width="75%" outlined width="400">
+  <v-card outlined>
     <CardHeader :description="description" :image="image" :loaded-members="loadedMembers" :name="name"/>
     <!-- Project list -->
     <v-container class="text-left" style="height: 65%">

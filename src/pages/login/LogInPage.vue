@@ -40,6 +40,11 @@
             <v-btn @click="submitLogin(username, password)">Log in</v-btn>
             <v-spacer/>
           </v-row>
+          <v-row class="mt-6">
+            <v-spacer/>
+            <p :hidden="!error" class="red--text">{{ error }}</p>
+            <v-spacer/>
+          </v-row>
         </v-col>
       </v-container>
       <v-spacer/>
@@ -53,6 +58,13 @@
 import TopBar from '../../common-components/TopBar.vue'
 
 function submitLogin(username, password) {
+
+  // If either the username or password is null, show the error message
+  if (!username || !password) {
+    this.error = 'You need to provide a username and password'
+    return
+  }
+
   fetch("/api/accounts/login", {
     method: 'POST',
     body: JSON.stringify({
@@ -74,7 +86,8 @@ export default {
   data: () => ({
     showPassword: false,
     username: '',
-    password: ''
+    password: '',
+    error: ''
   }),
   methods: {
     submitLogin: submitLogin
